@@ -1,4 +1,4 @@
-puts 'Introduzca cualquier Palabra'
+puts 'Introduzca Palabra'
 str = gets.chomp
 
 def delete_reverse_vowel(str)
