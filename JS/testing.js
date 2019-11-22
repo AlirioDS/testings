@@ -79,6 +79,7 @@ function sortClientsTotalBalances(clients, accounts) {
 // 3 Objeto en que las claves sean los nombres de los bancos y los valores un arreglo con los ruts de sus clientes ordenados alfabeticamente por nombre.
 function banksClientsTaxNumbers(banks, accounts, clients) {
   let banksClientsTaxNumbers = {}
+  let client = []
 
   for (b=0; b<banks.length; b++) {
     for (a=0; a<accounts.length; a++) {
@@ -86,21 +87,24 @@ function banksClientsTaxNumbers(banks, accounts, clients) {
         for (c=0; c<clients.length; c++) {
           if (accounts[a].clientId == clients[c].id) {
             if (banksClientsTaxNumbers[banks[b].name] == null) {
-              banksClientsTaxNumbers[banks[b].name] = [clients[c]]
+              let newclient = clients[c]
+              client.push(newclient)
+              banksClientsTaxNumbers[banks[b].name] = client
             } else {
-              
+              newclient = clients[c]
+              client.push(newclient)
+              banksClientsTaxNumbers[banks[b].name] = client
             }
           }
         }
       }
     }
+    client = []
   }
-  debugger
   const question3 = Object.assign({}, banksClientsTaxNumbers)
   Object.keys(question3).forEach(key => {
     question3[key].sort((a, b) => a.name.localeCompare(b.name))
   })
-
   return question3
 }
 
